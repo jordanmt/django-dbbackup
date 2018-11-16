@@ -95,7 +95,8 @@ class Command(BaseDbBackupCommand):
         if self.encrypt:
             encrypted_file = utils.encrypt_file(tarball, filename)
             tarball, filename = encrypted_file
-
+        # Set file name
+        filename = self.filename if self.filename else filename
         self.logger.debug("Backup size: %s", utils.handle_size(tarball))
         # Store backup
         tarball.seek(0)
